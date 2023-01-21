@@ -1,0 +1,15 @@
+
+# slack_api_token:
+# slack_channel_id:
+# slack_time_window_seconds:
+
+approved_reaction_name: white_check_mark
+merged_reaction_name: merged
+
+# github_api_token:
+
+# sleep_period_seconds:
+cache_folder_path: "./cache"
+dry_run: false
+debug: false
+max_retries: 3

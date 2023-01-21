@@ -1,0 +1,57 @@
+replicaCount: 1
+
+image:
+  repository: <my_repository>
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# extra arguments
+extraArgs: []
+  # - arg1
+  # - arg2
+
+# extra env vars
+extraEnv:
+  # - Name: value1
+  #   Value: value1
+
+# cache persistence
+persistence:
+  cacheDirPath: ./app/cache
+  enabled: false
+  storageClassName: "-"
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi

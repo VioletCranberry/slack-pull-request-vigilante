@@ -1,0 +1,11 @@
+async-timeout==4.0.2
+certifi==2022.12.7
+charset-normalizer==2.1.1
+ConfigArgParse==1.5.3
+idna==3.4
+nested-lookup==0.2.25
+requests==2.28.1
+schedule==1.1.0
+six==1.16.0
+slack-sdk==3.19.5
+urllib3==1.26.13

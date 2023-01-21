@@ -1,0 +1,49 @@
+environments: 
+  default:
+    values:
+      - auth: 
+          github_api_token: <github_api_token>
+          slack_api_token: <slack_api_token>
+
+helmDefaults:
+  wait: true
+
+releases:
+  - chart: ./charts/pr-vigilante
+    version: 0.3.0
+    name: pr-vigilante
+    namespace: slack-tools
+    createNamespace: true
+    values:
+      - persistence:
+          enabled: true
+          cacheDirPath: ./app/cache
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: "ebs-gp3"
+          size: 1Gi
+      - extraEnv:
+          - name: "CACHE_FOLDER_PATH"
+            value: "./cache"
+          - name: "SLACK_API_TOKEN" 
+            value: {{ .Values.auth.slack_api_token }}
+          - name: "GITHUB_API_TOKEN"
+            value: {{ .Values.auth.github_api_token }}
+          - name: "CHANNEL_ID"
+            value: <my_slack_channel_id>
+          - name: "APPROVED_REACTION_NAME"
+            value: "white_check_mark"
+          - name: "MERGED_REACTION_NAME"
+            value: "merged"
+          - name: "TIME_WINDOW_MINUTES"
+            value: "1440"
+          - name: "SLEEP_PERIOD_MINUTES"
+            value: "1"
+          - name: "MAX_RETRIES"
+            value: "5"
+      - resources:
+          requests:
+            cpu: 200m
+            memory: 200Mi
+      - nodeSelector:
+          purpose: general
